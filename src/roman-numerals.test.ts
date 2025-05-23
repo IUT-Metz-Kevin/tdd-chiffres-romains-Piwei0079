@@ -3,8 +3,17 @@ import { expect, test } from 'vitest';
 class RomanNumeral {
   of(value: string): number {
     let result = 0;
-   let romanNumber : string[]= ['I', 'V', 'X', 'L', 'C', 'D', 'M'];
+    //    let romanNumber : string[]= ['I', 'V', 'X', 'L', 'C', 'D', 'M'];
 
+    const romanNumberKey: { [key: string]: number } = {
+      'I': 1,
+      'V': 5,
+      'X': 10,
+      'L': 50,
+      'C': 100,
+      'D': 500,
+      'M': 1000,
+    };
 
     // if (value === 'I') return 1;
     // if (value === 'IV') return 4;
@@ -15,37 +24,24 @@ class RomanNumeral {
     // if (value === 'D') return 500;
     // if (value === 'M') return 1000;
 
-    for(let i=0; i<value.length;i++){
-         if(value[i]===romanNumber[0] && value[i+1]===romanNumber[1]){
-            result=5-1;
-            break;
-        }
-        else if(value[i]===romanNumber[0]){
-            result+=1;
-        }
-        else if(value[i]===romanNumber[0] && value[i+1]===romanNumber[0]){
-        result +=2;
-        }
-       
-        else if(value[i]===romanNumber[1]){
-            result+=5;
-        }
-        else if(value[i]===romanNumber[2]){
-            result+=10;
-        }
-        else if(value[i]===romanNumber[3]){
-            result+=50;
-        }
-        else if(value[i]===romanNumber[4]){
-            result+=100;
-        }
-        else if(value[i]===romanNumber[5]){
-            result+=500;
-        }
-        else if(value[i]===romanNumber[6]){
-            result+=1000;
-        }
+    for (let i = 0; i < value.length; i++) {
+        // on prend ici le premier caratère 
+        let romanNumberCurrent = romanNumberKey[value[i]];
+        // ici le caractere suivant 
+        let romanNumberNext = romanNumberKey[value[i+1]];
 
+        // on compare les valeurs des deux caracteres 
+        if(romanNumberCurrent < romanNumberNext){
+            // si le caractere suivant est plus grand, on soustrait
+            // par exemple I:1 et V:5 donc 5-1=4 
+            result = romanNumberNext - romanNumberCurrent;
+            
+        }
+        else {
+            // sinon on ajoute la valeur du caractere actuelle 
+            result +=romanNumberCurrent;
+        }
+     
     }
 
     return result;
@@ -54,7 +50,7 @@ class RomanNumeral {
 
 test.each([
   ['I', 1],
-  ['II',2],
+  ['II', 2],
   ['IV', 4],
   ['V', 5],
   ['V', 5],
