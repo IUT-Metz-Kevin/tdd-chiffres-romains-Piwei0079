@@ -35,6 +35,7 @@ class RomanNumeral {
             // si le caractere suivant est plus grand, on soustrait
             // par exemple I:1 et V:5 donc 5-1=4 
             result = romanNumberNext - romanNumberCurrent;
+          i++;  
             
         }
         else {
