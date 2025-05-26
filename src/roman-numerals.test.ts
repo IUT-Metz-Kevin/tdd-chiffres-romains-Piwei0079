@@ -49,6 +49,15 @@ class RomanNumeral {
   }
 }
 
+
+function decimalToRoman(value: number):string{
+  let result = '';
+
+  if(value === 1) return 'I';
+
+  return result;
+}
+
 test.each([
   ['I', 1],
   ['II', 2],
@@ -60,6 +69,7 @@ test.each([
   ['C', 100],
   ['D', 500],
   ['M', 1000],
+  [1, 'I'],
 ])('%s should give %s', (input, expected) => {
   console.log(input, expected);
   expect(new RomanNumeral().of('I')).toBe(1);
@@ -71,4 +81,5 @@ test.each([
   expect(new RomanNumeral().of('C')).toBe(100);
   expect(new RomanNumeral().of('D')).toBe(500);
   expect(new RomanNumeral().of('M')).toBe(1000);
+  expect(decimalToRoman(1)).toBe('I');
 });
