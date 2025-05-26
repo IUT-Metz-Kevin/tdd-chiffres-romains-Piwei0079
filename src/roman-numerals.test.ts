@@ -1,10 +1,10 @@
+import { log } from 'console';
 import { expect, test } from 'vitest';
 
 class RomanNumeral {
-  of(value: string): number {
-    let result = 0;
-    //    let romanNumber : string[]= ['I', 'V', 'X', 'L', 'C', 'D', 'M'];
 
+  of(value: string ): number {
+    let result = 0 ;
     const romanNumberKey: { [key: string]: number } = {
       'I': 1,
       'V': 5,
@@ -15,14 +15,8 @@ class RomanNumeral {
       'M': 1000,
     };
 
-    // if (value === 'I') return 1;
-    // if (value === 'IV') return 4;
-    // if (value === 'V') return 5;
-    // if (value === 'X') return 10;
-    // if (value === 'L') return 50;
-    // if (value === 'C') return 100;
-    // if (value === 'D') return 500;
-    // if (value === 'M') return 1000;
+  
+
 
     for (let i = 0; i < value.length; i++) {
         // on prend ici le premier caratère 
@@ -53,7 +47,22 @@ class RomanNumeral {
 function decimalToRoman(value: number):string{
   let result = '';
 
-  if(value === 1) return 'I';
+  const romanNumerals: { [key: number]: string } = {
+   1: 'I',
+   5: 'V',
+   10: 'X',
+   50: 'L',
+   100: 'C',
+   500: 'D',
+   1000: 'M',
+  };
+
+for (const key of Object.keys(romanNumerals).reverse()) {
+  if (value == 1) return romanNumerals[1];
+}
+
+
+
 
   return result;
 }
